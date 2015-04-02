@@ -88,3 +88,9 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+Route::filter('Admin',function(){
+	if(! Entrust::hasRole(Config::get('customConfig.roles.Admin'))){
+		return Redirect::to('/');
+	}
+});
